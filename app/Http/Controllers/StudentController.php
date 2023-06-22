@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Curriculum;
 use App\Models\Student;
 use App\Models\StudentClass;
 use Illuminate\Http\Request;
@@ -20,11 +21,10 @@ class StudentController extends Controller
 
         $student->setAttribute('student_class', $student->studentClass->name);
 
+        $example = Curriculum::all();
 
+        // dd($example);
 
-        // dd($student->studentClass->name);
-
-        // $student = Student::with(['StudentClass', 'Lecture'])->findOrFail($id);
         return response()->json($student);
     }
 

@@ -10,6 +10,11 @@ class Student extends Model
 {
     use HasFactory;
 
+    protected $hidden = [
+        'student_class_id',
+        'created_at', 'updated_at',
+    ];
+
     public function studentClass()
     {
         return $this->belongsTo(StudentClass::class);

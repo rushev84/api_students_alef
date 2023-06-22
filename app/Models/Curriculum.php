@@ -11,6 +11,8 @@ class Curriculum extends Model
 {
     use HasFactory;
 
+    protected $table = 'curriculums';
+
     public function studentClass()
     {
         return $this->belongsTo(StudentClass::class);
