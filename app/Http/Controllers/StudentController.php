@@ -23,7 +23,13 @@ class StudentController extends Controller
 
         $example = Curriculum::all();
 
-        // dd($example);
+
+        // $example = Curriculum::where('student_class_id', 2)
+        //     ->where('lecture_id', 4)
+        //     ->first();
+
+
+        dd($example);
 
         return response()->json($student);
     }
