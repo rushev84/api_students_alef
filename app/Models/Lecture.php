@@ -10,6 +10,10 @@ class Lecture extends Model
 {
     use HasFactory;
 
+    protected $hidden = [
+        'created_at', 'updated_at',
+    ];
+
     public function curriculums()
     {
         return $this->hasMany(Curriculum::class);

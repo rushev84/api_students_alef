@@ -18,7 +18,7 @@ class Curriculum extends Model
         return $this->belongsTo(StudentClass::class);
     }
 
-    public function lectures()
+    public function lecture()
     {
         return $this->belongsTo(Lecture::class);
     }

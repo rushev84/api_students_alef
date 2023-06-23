@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Curriculum;
+use App\Models\Lecture;
 use App\Models\Student;
-use App\Models\StudentClass;
-use Illuminate\Http\Request;
+use App\Models\Curriculum;
 
 class StudentController extends Controller
 {
@@ -19,20 +18,20 @@ class StudentController extends Controller
     {
         $student = Student::findOrFail($id);
 
+        $curriculums = Curriculum::where('student_class_id', $student->studentClass->id)
+            ->get();
+
+        $lectureIds = $curriculums
+            ->pluck('lecture_id')
+            ->toArray();
+
+        $lectures = Lecture::whereIn('id', $lectureIds)
+            ->get();
+
         $student->setAttribute('student_class', $student->studentClass->name);
-
-        $example = Curriculum::all();
-
-
-        // $example = Curriculum::where('student_class_id', 2)
-        //     ->where('lecture_id', 4)
-        //     ->first();
-
-
-        dd($example);
+        $student->setAttribute('lectures', $lectures->toArray());
 
         return response()->json($student);
     }
-
 }
 
