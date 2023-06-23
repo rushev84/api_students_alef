@@ -28,6 +28,8 @@ class StudentController extends Controller
     {
         $student = $this->studentService->getStudentWithClassAndLectures($id);
 
+        // dd($student);
+
         return response()->json($student);
     }
 
