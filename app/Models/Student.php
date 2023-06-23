@@ -10,6 +10,11 @@ class Student extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name', 'email',
+        'student_class_id',
+    ];
+
     protected $hidden = [
         'student_class_id',
         'created_at', 'updated_at',

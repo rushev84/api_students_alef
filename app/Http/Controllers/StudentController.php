@@ -45,11 +45,11 @@ class StudentController extends Controller
                 'student_class_id' => 'required|integer|exists:student_classes,id',
             ]);
 
-            $student = new Student;
-            $student->name = $validated['name'];
-            $student->email = $validated['email'];
-            $student->student_class_id = $validated['student_class_id'];
-            $student->save();
+            Student::create([
+                'name' => $validated['name'],
+                'email' => $validated['email'],
+                'student_class_id' => $validated['student_class_id'],
+            ]);
 
             return 'Студент успешно создан!';
 
