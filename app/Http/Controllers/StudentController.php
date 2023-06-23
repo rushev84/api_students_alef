@@ -2,41 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Lecture;
 use App\Models\Student;
-use App\Models\Curriculum;
 use App\Http\Requests\CreateStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use App\Services\Student\StudentService;
+use \Illuminate\Http\JsonResponse;
 
 class StudentController extends Controller
 {
-    public function index(): \Illuminate\Http\JsonResponse
+    protected $studentService;
+
+    public function __construct(StudentService $studentService)
+    {
+        $this->studentService = $studentService;
+    }
+
+    public function index(): JsonResponse
     {
         $students = Student::all();
+
         return response()->json($students);
     }
 
-    public function show(int $id): \Illuminate\Http\JsonResponse
+    public function show(int $id): JsonResponse
     {
-        $student = Student::findOrFail($id);
-
-        $curriculums = Curriculum::where('student_class_id', $student->studentClass->id)
-            ->get();
-
-        $lectureIds = $curriculums
-            ->pluck('lecture_id')
-            ->toArray();
-
-        $lectures = Lecture::whereIn('id', $lectureIds)
-            ->get();
-
-        $student->setAttribute('student_class', $student->studentClass->name);
-        $student->setAttribute('lectures', $lectures->toArray());
+        $student = $this->studentService->getStudentWithClassAndLectures($id);
 
         return response()->json($student);
     }
 
-    public function store(CreateStudentRequest $request): \Illuminate\Http\JsonResponse
+    public function store(CreateStudentRequest $request): JsonResponse
     {
         Student::create([
             'name' => $request->input('name'),
@@ -49,7 +44,7 @@ class StudentController extends Controller
         ]);
     }
 
-    public function update(int $id, UpdateStudentRequest $request): \Illuminate\Http\JsonResponse
+    public function update(int $id, UpdateStudentRequest $request): JsonResponse
     {
         $student = Student::findOrFail($id);
 
@@ -63,7 +58,7 @@ class StudentController extends Controller
         ]);
     }
 
-    public function destroy(int $id): \Illuminate\Http\JsonResponse
+    public function destroy(int $id): JsonResponse
     {
         $student = Student::findOrFail($id);
 
