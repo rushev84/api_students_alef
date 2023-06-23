@@ -13,15 +13,6 @@ use Illuminate\Validation\ValidationException;
 
 class StudentController extends Controller
 {
-    protected function failedValidation(Validator $validator)
-    {
-        return new ValidationException($validator, response()->json([
-            'success' => false,
-            'message' => 'Validation failed',
-            'errors' => $validator->errors(),
-        ]));
-    }
-
     public function index(): \Illuminate\Http\JsonResponse
     {
         $students = Student::all();
@@ -57,7 +48,6 @@ class StudentController extends Controller
         ]);
 
         return response()->json([
-            'success' => true,
             'message' => 'Студент успешно создан!',
         ]);
     }
