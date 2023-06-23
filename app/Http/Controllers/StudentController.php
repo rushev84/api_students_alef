@@ -48,39 +48,18 @@ class StudentController extends Controller
         return response()->json($student);
     }
 
-    // public function store(Request $request): string
-    // {
-    //     try {
-    //         $validated = $request->validate([
-    //             'name' => ['required', 'max:255', 'regex:/^[^0-9]*$/'],
-    //             'email' => 'required|email|unique:students,email',
-    //             'student_class_id' => 'required|integer|exists:student_classes,id',
-    //         ]);
-
-    //         Student::create([
-    //             'name' => $validated['name'],
-    //             'email' => $validated['email'],
-    //             'student_class_id' => $validated['student_class_id'],
-    //         ]);
-
-    //         return 'Студент успешно создан!';
-
-    //     } catch (ValidationException $e) {
-    //         return $e->getMessage();
-    //     }
-    // }
-
-    public function store(CreateStudentRequest $request)
+    public function store(CreateStudentRequest $request): \Illuminate\Http\JsonResponse
     {
-
         Student::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'student_class_id' => $request->input('student_class_id'),
         ]);
 
-        return 'Студент успешно создан!';
-
+        return response()->json([
+            'success' => true,
+            'message' => 'Студент успешно создан!',
+        ]);
     }
 }
 
