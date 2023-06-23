@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Lecture;
 use App\Models\Student;
 use App\Models\Curriculum;
+use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
@@ -32,6 +33,23 @@ class StudentController extends Controller
         $student->setAttribute('lectures', $lectures->toArray());
 
         return response()->json($student);
+    }
+
+    public function store(Request $request): string
+    {
+        $validated = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|unique:students,email',
+            'student_class_id' => 'required|integer|exists:student_classes,id',
+        ]);
+
+        $student = new Student;
+        $student->name = $validated['name'];
+        $student->email = $validated['email'];
+        $student->student_class_id = $validated['student_class_id'];
+        $student->save();
+
+        return 'Студент успешно создан!';
     }
 }
 
