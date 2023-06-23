@@ -5,11 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Lecture;
 use App\Models\Student;
 use App\Models\Curriculum;
-use Illuminate\Http\Request;
-// use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Validation\Validator;
 use App\Http\Requests\CreateStudentRequest;
-use Illuminate\Validation\ValidationException;
+use App\Http\Requests\UpdateStudentRequest;
 
 class StudentController extends Controller
 {
@@ -49,6 +46,20 @@ class StudentController extends Controller
 
         return response()->json([
             'message' => 'Студент успешно создан!',
+        ]);
+    }
+
+    public function update(int $id, UpdateStudentRequest $request): \Illuminate\Http\JsonResponse
+    {
+        $student = Student::findOrFail($id);
+
+        $student->update([
+            'name' => $request->input('name'),
+            'student_class_id' => $request->input('student_class_id'),
+        ]);
+
+        return response()->json([
+            'message' => 'Студент успешно обновлён!',
         ]);
     }
 }
