@@ -62,5 +62,16 @@ class StudentController extends Controller
             'message' => 'Студент успешно обновлён!',
         ]);
     }
+
+    public function destroy(int $id): \Illuminate\Http\JsonResponse
+    {
+        $student = Student::findOrFail($id);
+
+        $student->delete();
+
+        return response()->json([
+            'message' => 'Студент успешно удалён!',
+        ]);
+    }
 }
 
