@@ -13,6 +13,11 @@ class Curriculum extends Model
 
     protected $table = 'curriculums';
 
+    protected $hidden = [
+        'student_class_id', 'lecture_id',
+        'created_at', 'updated_at',
+    ];
+
     public function studentClass()
     {
         return $this->belongsTo(StudentClass::class);

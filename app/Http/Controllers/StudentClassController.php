@@ -36,6 +36,19 @@ class StudentClassController extends Controller
         return response()->json($student_class);
     }
 
+    public function showWithCurriculum(int $id)
+    {
+        // $student_class = StudentClass::with('curriculums.lecture')->findOrFail($id);
+
+        $student_class = StudentClass::with('curriculums.lecture')->findOrFail($id);
+        $sorted_curriculums = collect($student_class->curriculums)->sortBy('order')->values()->all();
+
+        // ПРОБЛЕМА! массив моделей отсортирован, а в json сортировки нет
+        $student_class->curriculums = $sorted_curriculums;
+
+        return response()->json($student_class);
+    }
+
     public function update(int $id, UpdateStudentClassRequest $request)
     {
         $student_class = StudentClass::findOrFail($id);
