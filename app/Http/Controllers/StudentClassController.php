@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\StudentClass;
 use App\Http\Requests\CreateStudentClassRequest;
+use App\Http\Requests\UpdateStudentClassRequest;
 
 class StudentClassController extends Controller
 {
@@ -22,6 +23,19 @@ class StudentClassController extends Controller
 
         return response()->json([
             'message' => 'Класс успешно создан!',
+        ]);
+    }
+
+    public function update(int $id, UpdateStudentClassRequest $request)
+    {
+        $student_class = StudentClass::findOrFail($id);
+
+        $student_class->update([
+            'name' => $request->input('name'),
+        ]);
+
+        return response()->json([
+            'message' => 'Класс успешно обновлён!',
         ]);
     }
 }
