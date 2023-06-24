@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StudentClassController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,3 +25,5 @@ Route::get('/students/{id}', [StudentController::class, 'show'])->name('student.
 Route::post('/students', [StudentController::class, 'store'])->name('student.store');
 Route::put('/students/{id}', [StudentController::class, 'update'])->name('student.update');
 Route::delete('/students/{id}', [StudentController::class, 'destroy'])->name('student.destroy');
+
+Route::get('/classes', [StudentClassController::class, 'index'])->name('student_classes');
