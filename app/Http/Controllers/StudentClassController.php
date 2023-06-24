@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\StudentClass;
+use App\Http\Requests\CreateStudentClassRequest;
 
 class StudentClassController extends Controller
 {
@@ -13,4 +14,14 @@ class StudentClassController extends Controller
         return response()->json($student_classes);
     }
 
+    public function store(CreateStudentClassRequest $request)
+    {
+        StudentClass::create([
+            'name' => $request->input('name'),
+        ]);
+
+        return response()->json([
+            'message' => 'Класс успешно создан!',
+        ]);
+    }
 }
