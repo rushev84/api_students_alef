@@ -29,6 +29,13 @@ class StudentClassController extends Controller
         ]);
     }
 
+    public function show(int $id)
+    {
+        $student_class = StudentClass::with('students')->findOrFail($id);
+
+        return response()->json($student_class);
+    }
+
     public function update(int $id, UpdateStudentClassRequest $request)
     {
         $student_class = StudentClass::findOrFail($id);
