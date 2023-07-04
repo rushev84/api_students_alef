@@ -1,66 +1,273 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# API на Laravel для университета
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Есть студенты, классы, лекции и учебный план. 
+Студент может состоять только в одном классе.
+В классе может быть много студентов.
+У каждого класса есть учебный план, состоящий из разных лекций, в учебном плане лекции не могут повторяться.
+Разные классы проходят лекции в разном порядке.
 
-## About Laravel
+Примеры запросов ниже, ответ всегда приходит в формате JSON (либо данные, либо сообщение об ошибке).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+------------------------------------------------------------------------------------------
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Студенты
+##### Получить список студентов
+<details>
+ <summary><code>GET</code> <code><b>/students</b></code> </summary>
 
-## Learning Laravel
+###### Параметров запроса нет
+</details>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+##### Получить информацию о конкретном студенте (имя, email, класс, прослушанные лекции)
+<details>
+ <summary><code>GET</code> <code><b>/students/{id}</b></code> </summary>
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+###### Параметров запроса нет
+</details>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+##### Создать студента
+<details>
+<summary><code>POST</code> <code><b>/students</b></code> </summary>
 
-## Laravel Sponsors
+###### Параметры запроса
+<table>
+    <tr>
+        <th style="vertical-align: top;">Ключ</th>
+        <th>Значение</th>
+    </tr>
+    <tr>
+        <td>name</td>
+        <td style="padding-left: 0">
+            <ul>
+                <li>обязательное</li>
+                <li>максимум 255 символов</li>
+                <li>цифры запрещены</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>email</td>
+        <td style="padding-left: 0">
+            <ul>
+                <li>обязательное</li>
+                <li>формат e-mail</li>
+                <li>не должно использоваться ранее</li>
+            </ul>
+        </td>
+    </tr>
+        <tr>
+        <td>student_class_id</td>
+        <td style="padding-left: 0">
+            <ul>
+                <li>обязательное</li>
+                <li>число</li>
+                <li>класс с таким id должен существовать</li>
+            </ul>
+        </td>
+    </tr>
+</table>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+</details>
 
-### Premium Partners
+##### Обновить студента (имя, принадлежность к классу)
+<details>
+<summary><code>PUT</code> <code><b>/students/{id}</b></code> </summary>
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+###### Параметры запроса
+<table>
+    <tr>
+        <th style="vertical-align: top;">Ключ</th>
+        <th>Значение</th>
+    </tr>
+    <tr>
+        <td>name</td>
+        <td style="padding-left: 0">
+            <ul>
+                <li>обязательное</li>
+                <li>максимум 255 символов</li>
+                <li>цифры запрещены</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>student_class_id</td>
+        <td style="padding-left: 0">
+            <ul>
+                <li>обязательное</li>
+                <li>число</li>
+                <li>класс с таким id должен существовать</li>
+            </ul>
+        </td>
+    </tr>
+</table>
+</details>
 
-## Contributing
+##### Удалить студента
+<details>
+ <summary><code>DELETE</code> <code><b>/students/{id}</b></code> </summary>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+###### Параметров запроса нет
+</details>
 
-## Code of Conduct
+------------------------------------------------------------------------------------------
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Классы
+##### Получить список классов
+<details>
+ <summary><code>GET</code> <code><b>/classes</b></code> </summary>
 
-## Security Vulnerabilities
+###### Параметров запроса нет
+</details>
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+##### Получить информацию о конкретном классе (название, студенты класса)
+<details>
+ <summary><code>GET</code> <code><b>/classes/{id}</b></code> </summary>
 
-## License
+###### Параметров запроса нет
+</details>
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+##### Получить учебный план (список лекций) для конкретного класса
+<details>
+<summary><code>GET</code> <code><b>/classes/{id}/curriculum</b></code> </summary>
+
+###### Параметров запроса нет
+</details>
+
+##### Создать класс
+<details>
+<summary><code>POST</code> <code><b>/classes</b></code> </summary>
+
+###### Параметры запроса
+<table>
+    <tr>
+        <th style="vertical-align: top;">Ключ</th>
+        <th>Значение</th>
+    </tr>
+    <tr>
+        <td>name</td>
+        <td style="padding-left: 0">
+            <ul>
+                <li>обязательное</li>
+                <li>максимум 255 символов</li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+</details>
+
+##### Обновить класс (название)
+<details>
+<summary><code>PUT</code> <code><b>/classes/{id}</b></code> </summary>
+
+###### Параметры запроса
+<table>
+    <tr>
+        <th style="vertical-align: top;">Ключ</th>
+        <th>Значение</th>
+    </tr>
+    <tr>
+        <td>name</td>
+        <td style="padding-left: 0">
+            <ul>
+                <li>обязательное</li>
+                <li>максимум 255 символов</li>
+            </ul>
+        </td>
+    </tr>
+</table>
+</details>
+
+##### Удалить класс
+<details>
+ <summary><code>DELETE</code> <code><b>/classes/{id}</b></code> </summary>
+
+###### Параметров запроса нет
+</details>
+
+------------------------------------------------------------------------------------------
+
+### Лекции
+
+##### Получить список лекций
+<details>
+ <summary><code>GET</code> <code><b>/lectures</b></code> </summary>
+
+###### Параметров запроса нет
+</details>
+
+##### Получить информацию о конкретной лекции (тема, описание, какие классы прослушали лекцию, какие студенты прослушали лекцию)
+<details>
+ <summary><code>GET</code> <code><b>/lectures/{id}</b></code> </summary>
+
+###### Параметров запроса нет
+</details>
+
+##### Создать лекцию
+<details>
+<summary><code>POST</code> <code><b>/lectures</b></code> </summary>
+
+###### Параметры запроса
+<table>
+    <tr>
+        <th style="vertical-align: top;">Ключ</th>
+        <th>Значение</th>
+    </tr>
+    <tr>
+        <td>topic</td>
+        <td style="padding-left: 0">
+            <ul>
+                <li>обязательное</li>
+                <li>максимум 255 символов</li>
+            </ul>
+        </td>
+    </tr>
+        <tr>
+        <td>description</td>
+        <td style="padding-left: 0">
+            <ul>
+                <li>не обязательное</li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+</details>
+
+##### Обновить лекцию (тема, описание)
+<details>
+<summary><code>PUT</code> <code><b>/lectures/{id}</b></code> </summary>
+
+###### Параметры запроса
+<table>
+    <tr>
+        <th style="vertical-align: top;">Ключ</th>
+        <th>Значение</th>
+    </tr>
+    <tr>
+        <td>topic</td>
+        <td style="padding-left: 0">
+            <ul>
+                <li>обязательное</li>
+                <li>максимум 255 символов</li>
+            </ul>
+        </td>
+    </tr>
+        <tr>
+        <td>description</td>
+        <td style="padding-left: 0">
+            <ul>
+                <li>не обязательное</li>
+            </ul>
+        </td>
+    </tr>
+</table>
+</details>
+
+##### Удалить лекцию
+<details>
+ <summary><code>DELETE</code> <code><b>/lectures/{id}</b></code> </summary>
+
+###### Параметров запроса нет
+</details>
