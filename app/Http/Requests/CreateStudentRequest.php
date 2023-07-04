@@ -24,8 +24,8 @@ class CreateStudentRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:255', 'regex:/^[^0-9]*$/'],
-            'email' => 'required|email|unique:students,email',
-            'student_class_id' => 'required|integer|exists:student_classes,id',
+            'email' => ['required', 'email', 'unique:students,email'],
+            'student_class_id' => ['required', 'integer', 'exists:student_classes,id'],
         ];
     }
 }
