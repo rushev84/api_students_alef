@@ -8,9 +8,17 @@ use App\Models\StudentClass;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\CreateStudentClassRequest;
 use App\Http\Requests\UpdateStudentClassRequest;
+use App\Services\StudentClass\StudentClassService;
 
 class StudentClassController extends Controller
 {
+    protected $studentClassService;
+
+    public function __construct(StudentClassService $studentClassService)
+    {
+        $this->studentClassService = $studentClassService;
+    }
+
     public function index()
     {
         $student_classes = StudentClass::all();
@@ -64,14 +72,7 @@ class StudentClassController extends Controller
 
     public function destroy(int $id)
     {
-        $student_class = StudentClass::findOrFail($id);
-
-        // вынести в сервис
-        Student::where('student_class_id', $id)->update(['student_class_id' => null]);
-
-        DB::table('curriculums')->where('student_class_id', $id)->delete();
-
-        $student_class->delete();
+        $this->studentClassService->destroyStudentClass($id);
 
         return response()->json([
             'message' => 'Класс успешно удалён!',
