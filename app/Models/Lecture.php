@@ -10,6 +10,10 @@ class Lecture extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'topic', 'description',
+    ];
+
     protected $hidden = [
         'created_at', 'updated_at',
     ];
