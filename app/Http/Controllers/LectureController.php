@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Lecture;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\CreateLectureRequest;
+use App\Http\Requests\UpdateLectureRequest;
 
 class LectureController extends Controller
 {
@@ -24,6 +25,20 @@ class LectureController extends Controller
 
         return response()->json([
             'message' => 'Лекция успешно создана!',
+        ]);
+    }
+
+    public function update(int $id, UpdateLectureRequest $request): JsonResponse
+    {
+        $lecture = Lecture::findOrFail($id);
+
+        $lecture->update([
+            'topic' => $request->input('topic'),
+            'description' => $request->input('description'),
+        ]);
+
+        return response()->json([
+            'message' => 'Лекция успешно обновлена!',
         ]);
     }
 
