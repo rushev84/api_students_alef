@@ -6,9 +6,17 @@ use App\Models\Lecture;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\CreateLectureRequest;
 use App\Http\Requests\UpdateLectureRequest;
+use App\Services\Lecture\LectureService;
 
 class LectureController extends Controller
 {
+    protected $lectureService;
+
+    public function __construct(LectureService $lectureService)
+    {
+        $this->lectureService = $lectureService;
+    }
+
     public function index(): JsonResponse
     {
         $lectures = Lecture::all();
@@ -30,12 +38,7 @@ class LectureController extends Controller
 
     public function show(int $id)
     {
-        $lecture = Lecture::with('studentClasses.students')->findOrFail($id);
-
-        $lecture->studentClasses->transform(function ($studentClass) {
-            unset($studentClass->pivot);
-            return $studentClass;
-        });
+        $lecture = $this->lectureService->getLectureWithClassesAndStudents($id);
 
         return response()->json($lecture);
     }
