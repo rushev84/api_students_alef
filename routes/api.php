@@ -25,6 +25,7 @@ Route::put('/classes/{id}', [StudentClassController::class, 'update'])->name('st
 Route::delete('/classes/{id}', [StudentClassController::class, 'destroy'])->name('student_class.destroy');
 
 Route::get('/lectures', [LectureController::class, 'index'])->name('lectures');
+Route::get('/lectures/{id}', [LectureController::class, 'show'])->name('lecture.show');
 Route::post('/lectures', [LectureController::class, 'store'])->name('lecture.store');
 Route::put('/lectures/{id}', [LectureController::class, 'update'])->name('lecture.update');
 Route::delete('/lectures/{id}', [LectureController::class, 'destroy'])->name('lecture.destroy');

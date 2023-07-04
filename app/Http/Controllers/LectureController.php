@@ -28,6 +28,18 @@ class LectureController extends Controller
         ]);
     }
 
+    public function show(int $id)
+    {
+        $lecture = Lecture::with('studentClasses.students')->findOrFail($id);
+
+        $lecture->studentClasses->transform(function ($studentClass) {
+            unset($studentClass->pivot);
+            return $studentClass;
+        });
+
+        return response()->json($lecture);
+    }
+
     public function update(int $id, UpdateLectureRequest $request): JsonResponse
     {
         $lecture = Lecture::findOrFail($id);
