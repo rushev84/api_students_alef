@@ -2,9 +2,7 @@
 
 namespace App\Services\Student;
 
-use App\Models\Lecture;
 use App\Models\Student;
-use App\Models\Curriculum;
 
 class StudentService
 {
