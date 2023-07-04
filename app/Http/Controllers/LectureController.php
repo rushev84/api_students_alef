@@ -26,4 +26,15 @@ class LectureController extends Controller
             'message' => 'Лекция успешно создана!',
         ]);
     }
+
+    public function destroy(int $id): JsonResponse
+    {
+        $lecture = Lecture::findOrFail($id);
+
+        $lecture->delete();
+
+        return response()->json([
+            'message' => 'Лекция успешно удалена!',
+        ]);
+    }
 }
