@@ -11,6 +11,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/', function () {
+    return "<b>Добро пожаловать в API университета!</b><br> Инструкция для работы с API <a href='https://github.com/rushev84/api_students_alef'>здесь</a>.";
+});
+
 Route::get('/students', [StudentController::class, 'index'])->name('students');
 Route::get('/students/{id}', [StudentController::class, 'show'])->name('student.show');
 Route::post('/students', [StudentController::class, 'store'])->name('student.store');
