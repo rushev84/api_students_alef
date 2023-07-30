@@ -5,6 +5,67 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/api/": {}
+        "/api/": {},
+        "/api/students": {
+            "post": {
+                "tags": [
+                    "Студенты"
+                ],
+                "summary": "Создание студента",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "required": [
+                                            "name",
+                                            "email",
+                                            "student_class_id"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "maxLength": 255,
+                                                "pattern": "^[^0-9]*$",
+                                                "example": "Иван Иванов"
+                                            },
+                                            "email": {
+                                                "type": "string",
+                                                "format": "email",
+                                                "example": "ivanov@mail.ru"
+                                            },
+                                            "student_class_id": {
+                                                "type": "integer",
+                                                "example": 3
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Студент успешно создан!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
