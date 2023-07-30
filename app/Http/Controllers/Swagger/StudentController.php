@@ -6,6 +6,23 @@ use App\Http\Controllers\Controller;
 
 /**
  *
+ * @OA\Get(
+ *     path="/api/students",
+ *     summary="Получение списка студентов",
+ *     tags={"Студенты"},
+ *
+ *     @OA\Response(
+ *         response=200,
+ *         description="OK",
+ *         @OA\JsonContent(type="array", @OA\Items(
+ *              @OA\Property(property="id", type="integer", example=1),
+ *              @OA\Property(property="name", type="string", example="Андрей Козлов"),
+ *              @OA\Property(property="email", type="string", example="kozlov@mail.ru"),
+ *              ),
+ *         ),
+ *     ),
+ * ),
+ *
  * @OA\Post(
  *     path="/api/students",
  *     summary="Создание студента",
@@ -32,7 +49,7 @@ use App\Http\Controllers\Controller;
  *         ),
  *     ),
  *
- *     )
+ * ),
  *
 
  */

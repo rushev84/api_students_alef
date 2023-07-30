@@ -7,6 +7,41 @@
     "paths": {
         "/api/": {},
         "/api/students": {
+            "get": {
+                "tags": [
+                    "Студенты"
+                ],
+                "summary": "Получение списка студентов",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "name": {
+                                                "type": "string",
+                                                "example": "Андрей Козлов"
+                                            },
+                                            "email": {
+                                                "type": "string",
+                                                "example": "kozlov@mail.ru"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "post": {
                 "tags": [
                     "Студенты"
