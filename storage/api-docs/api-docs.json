@@ -101,6 +101,85 @@
                     }
                 }
             }
+        },
+        "/api/students/{id}": {
+            "get": {
+                "tags": [
+                    "Студенты"
+                ],
+                "summary": "Получение информации о конкретном студенте (имя, email, класс, прослушанные лекции)",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id студента",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": "1"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "maxLength": 255,
+                                            "pattern": "^[^0-9]*$",
+                                            "example": "Иван Иванов"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "format": "email",
+                                            "example": "ivanov@mail.ru"
+                                        },
+                                        "student_class": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 3
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "02-СВ"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "lectures": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "topic": {
+                                                        "type": "string",
+                                                        "example": "Введение в ООП"
+                                                    },
+                                                    "description": {
+                                                        "type": "string",
+                                                        "example": "В этой лекции вы познакомитесь с объектно ориентированным программированием на PHP. Вы узнаете о классах, интерфейсах, инкапсуляции и магических методах. В итоге поймете, для чего нужны классы как абстракция данных. Знание основ объектно ориентированного программирования пригодится, чтобы понимать плюсы и минусы кода с классами и объектами. Также это поможет использовать объекты для реализации программной логики. Этот курс подойдет тем, кто уже хорошо знаком с языком PHP. Чтобы учиться было проще, стоит заранее изучить курсы: «Основы PHP», «PHP: Массивы», «PHP: Ассоциативные массивы» и «PHP: Функции»."
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
