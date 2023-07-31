@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Swagger;
 use App\Http\Controllers\Controller;
 
 /**
- *
  * @OA\Get(
  *     path="/api/students",
  *     summary="Получение списка студентов",

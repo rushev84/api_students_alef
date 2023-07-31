@@ -6,6 +6,122 @@
     },
     "paths": {
         "/api/": {},
+        "/api/classes": {
+            "get": {
+                "tags": [
+                    "Классы"
+                ],
+                "summary": "Получение списка классов",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "id": 3,
+                                        "name": "02-СВ"
+                                    },
+                                    {
+                                        "id": 4,
+                                        "name": "05-ДВ"
+                                    },
+                                    {
+                                        "id": 5,
+                                        "name": "01-КГ"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/classes/{id}": {
+            "get": {
+                "tags": [
+                    "Классы"
+                ],
+                "summary": "Получение информации о конкретном классе (название, студенты класса)",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id класса",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": "3"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "maxLength": 255,
+                                            "example": "02-СВ"
+                                        },
+                                        "students": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string"
+                                                    },
+                                                    "name": {
+                                                        "type": "string"
+                                                    },
+                                                    "email": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "example": [
+                                                {
+                                                    "id": 1,
+                                                    "name": "Андрей Козлов"
+                                                },
+                                                {
+                                                    "id": 9,
+                                                    "name": "Виталий Дьяков"
+                                                },
+                                                {
+                                                    "id": 11,
+                                                    "name": "Андрей Афанасьев"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/students": {
             "get": {
                 "tags": [
