@@ -55,7 +55,6 @@ use App\Http\Controllers\Controller;
  *             ),
  *         ),
  *     ),
- *
  * ),
  *
  * @OA\Post(
@@ -84,6 +83,39 @@ use App\Http\Controllers\Controller;
  *         ),
  *     ),
  *
+ * ),
+ *
+ * @OA\Put(
+ *     path="/api/students/{id}",
+ *     summary="Обновить информацию о студенте",
+ *     tags={"Студенты"},
+ *     @OA\Parameter(
+ *         description="id студента",
+ *         in="path",
+ *         name="id",
+ *         required=true,
+ *         example=1,
+ *     ),
+ *
+ *     @OA\RequestBody(
+ *         @OA\JsonContent(
+ *             allOf={
+ *                 @OA\Schema(
+ *                      required={"name", "email", "student_class_id"},
+ *                      @OA\Property(property="name", type="string", maxLength=255, pattern="^[^0-9]*$", example="Иван Ивановский"),
+ *                      @OA\Property(property="student_class_id", type="integer", example=3),
+ *                 ),
+ *             }
+ *         ),
+ *     ),
+ *
+ *     @OA\Response(
+ *         response=200,
+ *         description="OK",
+ *         @OA\JsonContent(
+ *             @OA\Property(property="message", type="string", example="Студент успешно обновлён!"),
+ *         ),
+ *     ),
  * ),
  *
 

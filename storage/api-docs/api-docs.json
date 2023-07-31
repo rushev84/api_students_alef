@@ -179,6 +179,69 @@
                         }
                     }
                 }
+            },
+            "put": {
+                "tags": [
+                    "Студенты"
+                ],
+                "summary": "Обновить информацию о студенте",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id студента",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "required": [
+                                            "name",
+                                            "email",
+                                            "student_class_id"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "maxLength": 255,
+                                                "pattern": "^[^0-9]*$",
+                                                "example": "Иван Ивановский"
+                                            },
+                                            "student_class_id": {
+                                                "type": "integer",
+                                                "example": 3
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Студент успешно обновлён!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
