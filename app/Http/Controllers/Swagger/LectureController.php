@@ -34,6 +34,33 @@ use App\Http\Controllers\Controller;
  *     ),
  * ),
  *
+ * @OA\Post(
+ *     path="/api/lectures",
+ *     summary="Создание лекции",
+ *     tags={"Лекции"},
+ *
+ *     @OA\RequestBody(
+ *         @OA\JsonContent(
+ *             allOf={
+ *                 @OA\Schema(
+ *                      required={"topic"},
+ *                      @OA\Property(property="topic", type="string", maxLength=255, example="Лекция о незабываемом"),
+ *                      @OA\Property(property="description", type="string", example="Эту лекцию вы точно никогда не забудете"),
+ *                 ),
+ *             }
+ *         ),
+ *     ),
+ *
+ *     @OA\Response(
+ *         response=200,
+ *         description="OK",
+ *         @OA\JsonContent(
+ *             @OA\Property(property="message", type="string", example="Лекция успешно создана!"),
+ *         ),
+ *     ),
+ *
+ * ),
+ *
  * @OA\Put(
  *     path="/api/lectures/{id}",
  *     summary="Обновить информацию о лекции",

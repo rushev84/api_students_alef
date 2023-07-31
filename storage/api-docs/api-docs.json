@@ -50,6 +50,57 @@
                         }
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Лекции"
+                ],
+                "summary": "Создание лекции",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "required": [
+                                            "topic"
+                                        ],
+                                        "properties": {
+                                            "topic": {
+                                                "type": "string",
+                                                "maxLength": 255,
+                                                "example": "Лекция о незабываемом"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Эту лекцию вы точно никогда не забудете"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Лекция успешно создана!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "/api/lectures/{id}": {
