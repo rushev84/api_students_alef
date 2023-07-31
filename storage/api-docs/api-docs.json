@@ -49,6 +49,53 @@
                         }
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Классы"
+                ],
+                "summary": "Создание класса",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "required": [
+                                            "name"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "maxLength": 255,
+                                                "example": "05-ПП"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Класс успешно создан!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "/api/classes/{id}": {

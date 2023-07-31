@@ -35,6 +35,32 @@ use App\Http\Controllers\Controller;
  *     ),
  * ),
  *
+ * @OA\Post(
+ *     path="/api/classes",
+ *     summary="Создание класса",
+ *     tags={"Классы"},
+ *
+ *     @OA\RequestBody(
+ *         @OA\JsonContent(
+ *             allOf={
+ *                 @OA\Schema(
+ *                      required={"name"},
+ *                      @OA\Property(property="name", type="string", maxLength=255, example="05-ПП"),
+ *                 ),
+ *             }
+ *         ),
+ *     ),
+ *
+ *     @OA\Response(
+ *         response=200,
+ *         description="OK",
+ *         @OA\JsonContent(
+ *             @OA\Property(property="message", type="string", example="Класс успешно создан!"),
+ *         ),
+ *     ),
+ *
+ * ),
+ *
  * @OA\Get(
  *     path="/api/classes/{id}",
  *     summary="Получение информации о конкретном классе (название, студенты класса)",
