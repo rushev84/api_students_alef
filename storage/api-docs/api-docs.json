@@ -242,6 +242,39 @@
                         }
                     }
                 }
+            },
+            "delete": {
+                "tags": [
+                    "Студенты"
+                ],
+                "summary": "Удалить студента",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id студента",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Студент успешно удалён!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
