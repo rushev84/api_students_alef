@@ -33,6 +33,7 @@ use App\Http\Controllers\Controller;
  *         ),
  *     ),
  * ),
+ *
  */
 
 class LectureController extends Controller
