@@ -15,10 +15,27 @@ use App\Http\Controllers\Controller;
  *         response=200,
  *         description="OK",
  *         @OA\JsonContent(type="array", @OA\Items(
- *              @OA\Property(property="id", type="integer", example=1),
- *              @OA\Property(property="name", type="string", example="Андрей Козлов"),
- *              @OA\Property(property="email", type="string", example="kozlov@mail.ru"),
+ *              @OA\Property(property="id", type="integer"),
+ *              @OA\Property(property="name", type="string"),
+ *              @OA\Property(property="email", type="string"),
  *              ),
+ *              example={
+ *                  {
+ *                  "id": 1,
+ *                  "name": "Андрей Козлов",
+ *                  "email": "kozlov@mail.ru",
+ *                  },
+ *                  {
+ *                  "id": 2,
+ *                  "name": "Виктор Кулешов",
+ *                  "email": "kuleshov@mail.ru",
+ *                  },
+ *                  {
+ *                  "id": 4,
+ *                  "name": "Вячеслав Иванов",
+ *                  "email": "ivanov@mail.ru",
+ *                  },
+ *              }
  *         ),
  *     ),
  * ),

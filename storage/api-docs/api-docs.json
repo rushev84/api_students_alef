@@ -22,21 +22,35 @@
                                     "items": {
                                         "properties": {
                                             "id": {
-                                                "type": "integer",
-                                                "example": 1
+                                                "type": "integer"
                                             },
                                             "name": {
-                                                "type": "string",
-                                                "example": "Андрей Козлов"
+                                                "type": "string"
                                             },
                                             "email": {
-                                                "type": "string",
-                                                "example": "kozlov@mail.ru"
+                                                "type": "string"
                                             }
                                         },
                                         "type": "object"
                                     }
-                                }
+                                },
+                                "example": [
+                                    {
+                                        "id": 1,
+                                        "name": "Андрей Козлов",
+                                        "email": "kozlov@mail.ru"
+                                    },
+                                    {
+                                        "id": 2,
+                                        "name": "Виктор Кулешов",
+                                        "email": "kuleshov@mail.ru"
+                                    },
+                                    {
+                                        "id": 4,
+                                        "name": "Вячеслав Иванов",
+                                        "email": "ivanov@mail.ru"
+                                    }
+                                ]
                             }
                         }
                     }
