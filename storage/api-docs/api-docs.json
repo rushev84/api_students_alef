@@ -223,6 +223,39 @@
                         }
                     }
                 }
+            },
+            "delete": {
+                "tags": [
+                    "Классы"
+                ],
+                "summary": "Удалить класс",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id класса",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Класс успешно удалён!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         },
         "/api/students": {

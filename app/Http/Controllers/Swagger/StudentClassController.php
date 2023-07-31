@@ -136,6 +136,28 @@ use App\Http\Controllers\Controller;
  *     ),
  * ),
  *
+ * @OA\Delete(
+ *     path="/api/classes/{id}",
+ *     summary="Удалить класс",
+ *     tags={"Классы"},
+ *     @OA\Parameter(
+ *         description="id класса",
+ *         in="path",
+ *         name="id",
+ *         required=true,
+ *         example=1,
+ *     ),
+ *
+ *
+ *     @OA\Response(
+ *         response=200,
+ *         description="OK",
+ *         @OA\JsonContent(
+ *             @OA\Property(property="message", type="string", example="Класс успешно удалён!"),
+ *         ),
+ *     ),
+ * ),
+ *
  */
 
 class StudentClassController extends Controller
