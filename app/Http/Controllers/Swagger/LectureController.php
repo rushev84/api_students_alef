@@ -34,6 +34,61 @@ use App\Http\Controllers\Controller;
  *     ),
  * ),
  *
+ * @OA\Put(
+ *     path="/api/lectures/{id}",
+ *     summary="Обновить информацию о лекции",
+ *     tags={"Лекции"},
+ *     @OA\Parameter(
+ *         description="id лекции",
+ *         in="path",
+ *         name="id",
+ *         required=true,
+ *         example=1,
+ *     ),
+ *
+ *     @OA\RequestBody(
+ *         @OA\JsonContent(
+ *             allOf={
+ *                 @OA\Schema(
+ *                      required={"topic"},
+ *                      @OA\Property(property="topic", type="string", maxLength=255, example="Лекция о незабываемом"),
+ *                      @OA\Property(property="description", type="string", example="Эту лекцию вы точно никогда не забудете"),
+ *                 ),
+ *             }
+ *         ),
+ *     ),
+ *
+ *     @OA\Response(
+ *         response=200,
+ *         description="OK",
+ *         @OA\JsonContent(
+ *             @OA\Property(property="message", type="string", example="Лекция успешно обновлена!"),
+ *         ),
+ *     ),
+ * ),
+ *
+ *
+ * @OA\Delete(
+ *     path="/api/lectures/{id}",
+ *     summary="Удалить лекцию",
+ *     tags={"Лекции"},
+ *     @OA\Parameter(
+ *         description="id лекции",
+ *         in="path",
+ *         name="id",
+ *         required=true,
+ *         example=1,
+ *     ),
+ *
+ *
+ *     @OA\Response(
+ *         response=200,
+ *         description="OK",
+ *         @OA\JsonContent(
+ *             @OA\Property(property="message", type="string", example="Лекция успешно удалена!"),
+ *         ),
+ *     ),
+ * ),
  */
 
 class LectureController extends Controller

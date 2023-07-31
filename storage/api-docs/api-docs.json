@@ -52,6 +52,101 @@
                 }
             }
         },
+        "/api/lectures/{id}": {
+            "put": {
+                "tags": [
+                    "Лекции"
+                ],
+                "summary": "Обновить информацию о лекции",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id лекции",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "required": [
+                                            "topic"
+                                        ],
+                                        "properties": {
+                                            "topic": {
+                                                "type": "string",
+                                                "maxLength": 255,
+                                                "example": "Лекция о незабываемом"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Эту лекцию вы точно никогда не забудете"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Лекция успешно обновлена!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Лекции"
+                ],
+                "summary": "Удалить лекцию",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id лекции",
+                        "required": true,
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Лекция успешно удалена!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/classes": {
             "get": {
                 "tags": [
