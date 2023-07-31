@@ -21,19 +21,19 @@ use App\Http\Controllers\Controller;
  *              ),
  *              example={
  *                  {
- *                  "id": 1,
- *                  "name": "Андрей Козлов",
- *                  "email": "kozlov@mail.ru",
+ *                      "id": 1,
+ *                      "name": "Андрей Козлов",
+ *                      "email": "kozlov@mail.ru",
  *                  },
  *                  {
- *                  "id": 2,
- *                  "name": "Виктор Кулешов",
- *                  "email": "kuleshov@mail.ru",
+ *                      "id": 2,
+ *                      "name": "Виктор Кулешов",
+ *                      "email": "kuleshov@mail.ru",
  *                  },
  *                  {
- *                  "id": 4,
- *                  "name": "Вячеслав Иванов",
- *                  "email": "ivanov@mail.ru",
+ *                      "id": 4,
+ *                      "name": "Вячеслав Иванов",
+ *                      "email": "ivanov@mail.ru",
  *                  },
  *              }
  *         ),
