@@ -103,6 +103,39 @@ use App\Http\Controllers\Controller;
  *         ),
  *     ),
  * ),
+ *
+ * @OA\Put(
+ *     path="/api/classes/{id}",
+ *     summary="Обновить информацию о классе",
+ *     tags={"Классы"},
+ *     @OA\Parameter(
+ *         description="id класса",
+ *         in="path",
+ *         name="id",
+ *         required=true,
+ *         example=1,
+ *     ),
+ *
+ *     @OA\RequestBody(
+ *         @OA\JsonContent(
+ *             allOf={
+ *                 @OA\Schema(
+ *                      required={"name"},
+ *                      @OA\Property(property="name", type="string", maxLength=255, example="07-РВ"),
+ *                 ),
+ *             }
+ *         ),
+ *     ),
+ *
+ *     @OA\Response(
+ *         response=200,
+ *         description="OK",
+ *         @OA\JsonContent(
+ *             @OA\Property(property="message", type="string", example="Класс успешно обновлён!"),
+ *         ),
+ *     ),
+ * ),
+ *
  */
 
 class StudentClassController extends Controller
